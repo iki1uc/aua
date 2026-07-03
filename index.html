@@ -1,0 +1,24 @@
+<pre id="aua"></pre>
+
+<script type="module">
+  import { AUA } from "./aua.js";
+
+  // Beispiel-Messwert (später real)
+  const measure = 1;
+
+  const out = AUA(measure);
+
+  let txt = "";
+  txt += "RESPO AUA :: Maß-Detektor\n";
+  txt += "--------------------------------\n";
+  txt += `Hit       → ${out.hit}\n`;
+  txt += `Block     → ${out.block}\n`;
+  txt += `Save      → ${out.save}\n`;
+  txt += `tmp       → ${out.tmp}\n`;
+  txt += `Message   → ${out.msg}\n`;
+  txt += "--------------------------------\n";
+  txt += "NC.link aktiv\n";
+  txt += "tmp-flux stabil\n";
+
+  document.getElementById("aua").textContent = txt;
+</script>
