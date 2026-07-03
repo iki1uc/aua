@@ -1,1 +1,11 @@
+<pre id="aua"></pre>
+<script type="module">
+  import { AUA } from "./aua.js";
+
+  const measure = 1; // Beispiel
+  const out = AUA(measure);
+
+  document.getElementById("aua").textContent =
+    JSON.stringify(out, null, 2);
+</script>
 
