@@ -1,3 +1,4 @@
+// aua.js - dein my live - ein Mind pro Gegenstand
 export const AUA = (measure) => {
   if (measure > 0) {
     return {
@@ -8,7 +9,6 @@ export const AUA = (measure) => {
       msg: "AUA: Maß überschritten (1x)"
     };
   }
-
   return {
     hit: false,
     block: false,
