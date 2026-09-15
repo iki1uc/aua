@@ -1,24 +1,18 @@
-<pre id="aua"></pre>
-
+<pre id="aua" style="position:absolute; bottom:60px; left:16px; background:rgba(0,0,0,0.55); padding:8px; border-radius:10px; font-size:9px; color:#8cf0d0; border:1px solid rgba(140,240,208,0.1);"></pre>
 <script type="module">
   import { AUA } from "./aua.js";
-
-  // Beispiel-Messwert (später real)
-  const measure = 1;
-
-  const out = AUA(measure);
-
-  let txt = "";
-  txt += "RESPO AUA :: Maß-Detektor\n";
-  txt += "--------------------------------\n";
-  txt += `Hit       → ${out.hit}\n`;
-  txt += `Block     → ${out.block}\n`;
-  txt += `Save      → ${out.save}\n`;
-  txt += `tmp       → ${out.tmp}\n`;
-  txt += `Message   → ${out.msg}\n`;
-  txt += "--------------------------------\n";
-  txt += "NC.link aktiv\n";
-  txt += "tmp-flux stabil\n";
-
-  document.getElementById("aua").textContent = txt;
+  
+  // Mainboard erweitern mit ein Mind pro Gegenstand
+  const origSim = window.MAINBOARD?.simulate;
+  if (origSim) {
+    window.MAINBOARD.simulate = () => {
+      origSim();
+      const compat = parseFloat(document.getElementById('rCompat')?.textContent) || 0;
+      const measure = compat < 60 ? 1 : 0;
+      const out = AUA(measure); // ein Mind!
+      
+      document.getElementById("aua").textContent =
+        `RESPO AUA :: ${out.tmp}\nHit:${out.hit} Block:${out.block} Save:${out.save}\n${out.msg}\nNC.link aktiv - Masse zurück`;
+    };
+  }
 </script>
